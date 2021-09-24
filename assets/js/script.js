@@ -1,37 +1,31 @@
 var todaysDate = $('#currentDay');
 var hourSlot = $('textarea');
-var time = moment().format('H');
+var time = moment().format('HH');
 
+function hourColorChanger(){
+    //Loops through each hour
+    //Color changes dynamically based on the time of day
+    hourSlot.each(function(i){
 
-
-
-
-// $('textarea').text() =  JSON.parse(localStorage.getItem(entryTime));
-
-
-//Loops through each hour
-//Color changes dynamically based on the time of day
-hourSlot.each(function(i){
-
-    if(time === i+9){
-        $(this).addClass('present');
-    }
-    else if(time > i+9){
-        $(this).addClass('past');
-    }
-    else if(time < i+9){
-        $(this).addClass('future');
-    }
-    else{
-        console.log("Time does not exist");
-    }
-});
+        if(time === i+9){
+            $(this).addClass('present');
+        }
+        else if(time > i+9){
+            $(this).addClass('past');
+        }
+        else if(time < i+9){
+            $(this).addClass('future');
+        }
+        else{
+            console.log("Time does not exist");
+        }
+    });
+}
 
 //Uses moment.js to display time
 function displayTime(){
     var rightNow = moment().format('dddd MMM Do YYYY');
     todaysDate.text(rightNow);
-    loadStoredEntries();
 }
 
 function loadStoredEntries(){
@@ -43,7 +37,7 @@ function loadStoredEntries(){
     $(".row-6 .hour").val(localStorage.getItem("6"));
     $(".row-7 .hour").val(localStorage.getItem("7"));
     $(".row-8 .hour").val(localStorage.getItem("8"));
-    $(".row-9 .hour").val(localStorage.getItem("8"));
+    $(".row-9 .hour").val(localStorage.getItem("9"));
 }
 
 $('.saveBtn').click(function(event){
@@ -54,6 +48,6 @@ $('.saveBtn').click(function(event){
 
 });
 
-
-
 displayTime();
+loadStoredEntries();
+hourSlot();
