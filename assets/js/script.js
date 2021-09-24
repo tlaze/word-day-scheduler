@@ -1,14 +1,16 @@
 var todaysDate = $('#currentDay');
 var hourSlot = $('textarea');
 var time = moment().format('H');
-var hour = $(".hour").text().trim();
 
 
+
+
+
+// $('textarea').text() =  JSON.parse(localStorage.getItem(entryTime));
 
 
 //Loops through each hour
 //Color changes dynamically based on the time of day
-
 hourSlot.each(function(i){
 
     if(time === i+9){
@@ -25,49 +27,33 @@ hourSlot.each(function(i){
     }
 });
 
-
-$('.saveBtn').click(function (){
-    var entry = $(this).siblings('.hour').val();
-    var entryTime = $(this).parent().attr("class").split("-")[1];
-    localStorage.setItem(entryTime, entry);
-});
-
-
 //Uses moment.js to display time
 function displayTime(){
     var rightNow = moment().format('dddd MMM Do YYYY');
     todaysDate.text(rightNow);
+    loadStoredEntries();
 }
 
-function saveEntry(){
-    console.log("click");
-    // deleteEntry();
-    // getStoredEntries();
-
-
-    console.log(localStorage);
-
-
-    $(".row1 .hour").val(localStorage.getItem("09"));
-    $(".row2 .hour").val(localStorage.getItem("10"));
-    $(".row3 .hour").val(localStorage.getItem("11"));
-    $(".row4 .hour").val(localStorage.getItem("12"));
-    $(".row5 .hour").val(localStorage.getItem("13"));
-    $(".row6 .hour").val(localStorage.getItem("14"));
-    $(".row7 .hour").val(localStorage.getItem("15"));
-    $(".row8 .hour").val(localStorage.getItem("16"));
-    $(".row9 .hour").val(localStorage.getItem("17"));
-
-}
-function deleteEntry(){
-    localStorage.clear();
+function loadStoredEntries(){
+    $(".row-1 .hour").val(localStorage.getItem("1"));
+    $(".row-2 .hour").val(localStorage.getItem("2"));
+    $(".row-3 .hour").val(localStorage.getItem("3"));
+    $(".row-4 .hour").val(localStorage.getItem("4"));
+    $(".row-5 .hour").val(localStorage.getItem("5"));
+    $(".row-6 .hour").val(localStorage.getItem("6"));
+    $(".row-7 .hour").val(localStorage.getItem("7"));
+    $(".row-8 .hour").val(localStorage.getItem("8"));
+    $(".row-9 .hour").val(localStorage.getItem("8"));
 }
 
-function getStoredEntries(){
-    var entry = localStorage.getItem('Event');
-    if(entry != null){
-        savedInputs = JSON.parse(entry);
-    }
-}
- 
+$('.saveBtn').click(function(event){
+    event.preventDefault();
+    var entryTime = $(this).parent().attr("class").split("-")[1];   //splits up each row class into just its number
+    var entry = $(this).siblings('.hour').val().trim("");
+    localStorage.setItem(entryTime, JSON.stringify(entry));
+
+});
+
+
+
 displayTime();
