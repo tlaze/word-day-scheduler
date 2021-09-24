@@ -1,4 +1,4 @@
-# word-day-scheduler
+# work-day-scheduler
 
 ##Description
 
