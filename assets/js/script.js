@@ -2,10 +2,8 @@ var todaysDate = $('#currentDay');
 var hourSlot = $('textarea');
 var time = moment().format('H');
 var hour = $(".hour").text().trim();
-var inputButton = $('.saveBtn');
-var ex = $('9');
 
-var savedInputs = new Array();
+
 
 
 //Loops through each hour
@@ -28,7 +26,11 @@ hourSlot.each(function(i){
 });
 
 
-inputButton.click('click', saveEntry);
+$('.saveBtn').click(function (){
+    var entry = $(this).siblings('.hour').val();
+    var entryTime = $(this).parent().attr("class").split("-")[1];
+    localStorage.setItem(entryTime, entry);
+});
 
 
 //Uses moment.js to display time
@@ -43,20 +45,18 @@ function saveEntry(){
     // getStoredEntries();
 
 
-    savedInputs.push({
-        entry: $('#9').val().trim(),
-        entry: $('#10').val().trim(),
-        entry: $('#11').val().trim(),
-        entry: $('#12').val().trim(),
-        entry: $('#13').val().trim(),
-        entry: $('#14').val().trim(),
-        entry: $('#15').val().trim(),
-        entry: $('#16').val().trim(),
-        entry: $('#17').val().trim(),
-    });
-    localStorage.setItem('Event', JSON.stringify(savedInputs));
     console.log(localStorage);
 
+
+    $(".row1 .hour").val(localStorage.getItem("09"));
+    $(".row2 .hour").val(localStorage.getItem("10"));
+    $(".row3 .hour").val(localStorage.getItem("11"));
+    $(".row4 .hour").val(localStorage.getItem("12"));
+    $(".row5 .hour").val(localStorage.getItem("13"));
+    $(".row6 .hour").val(localStorage.getItem("14"));
+    $(".row7 .hour").val(localStorage.getItem("15"));
+    $(".row8 .hour").val(localStorage.getItem("16"));
+    $(".row9 .hour").val(localStorage.getItem("17"));
 
 }
 function deleteEntry(){
