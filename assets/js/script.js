@@ -2,25 +2,34 @@ var todaysDate = $('#currentDay');
 var hourSlot = $('textarea');
 var time = moment().format('HH');
 
-function hourColorChanger(){
-    //Loops through each hour
-    //Color changes dynamically based on the time of day
-    hourSlot.each(function(i){
+$(".row-1 .hour").val(localStorage.getItem("1"));
+$(".row-2 .hour").val(localStorage.getItem("2"));
+$(".row-3 .hour").val(localStorage.getItem("3"));
+$(".row-4 .hour").val(localStorage.getItem("4"));
+$(".row-5 .hour").val(localStorage.getItem("5"));
+$(".row-6 .hour").val(localStorage.getItem("6"));
+$(".row-7 .hour").val(localStorage.getItem("7"));
+$(".row-8 .hour").val(localStorage.getItem("8"));
+$(".row-9 .hour").val(localStorage.getItem("9"));
 
-        if(time === i+9){
-            $(this).addClass('present');
-        }
-        else if(time > i+9){
-            $(this).addClass('past');
-        }
-        else if(time < i+9){
-            $(this).addClass('future');
-        }
-        else{
-            console.log("Time does not exist");
-        }
-    });
-}
+//Loops through each hour
+//Color changes dynamically based on the time of day
+
+console.log(time);
+hourSlot.each(function(i){
+    console.log(i);
+    console.log(this);
+    if(time > i+9){
+        $(this).addClass('past');
+    }
+    if(time === i+9){
+        $(this).addClass('present');
+    }
+    if(time < i+9){
+        $(this).addClass('future');
+    }
+});
+
 
 //Uses moment.js to display time
 function displayTime(){
@@ -28,17 +37,6 @@ function displayTime(){
     todaysDate.text(rightNow);
 }
 
-function loadStoredEntries(){
-    $(".row-1 .hour").val(localStorage.getItem("1"));
-    $(".row-2 .hour").val(localStorage.getItem("2"));
-    $(".row-3 .hour").val(localStorage.getItem("3"));
-    $(".row-4 .hour").val(localStorage.getItem("4"));
-    $(".row-5 .hour").val(localStorage.getItem("5"));
-    $(".row-6 .hour").val(localStorage.getItem("6"));
-    $(".row-7 .hour").val(localStorage.getItem("7"));
-    $(".row-8 .hour").val(localStorage.getItem("8"));
-    $(".row-9 .hour").val(localStorage.getItem("9"));
-}
 
 $('.saveBtn').click(function(event){
     event.preventDefault();
@@ -48,6 +46,10 @@ $('.saveBtn').click(function(event){
 
 });
 
+$('#clear').click(function (event){
+    event.preventDefault();
+    localStorage.clear();
+    location.reload();
+});
+
 displayTime();
-loadStoredEntries();
-hourSlot();

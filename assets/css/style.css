@@ -22,9 +22,13 @@ body {
     border-bottom: 10px solid black;
   }
   
-  .description {
-    white-space: pre-wrap;
-  }
+#clear{
+  border-left: 1px solid black;
+  border-radius: 15px;
+  background-color: #06aed5;
+  color: white;
+  margin-top:40px
+}
   
   .time-block {
     text-align: center;
@@ -41,10 +45,11 @@ body {
   }
   
   .hour {
-    background-color: grey;
-    color: #000000;
+    background-color: #ff6961;
+    color: blcak;
     border-top: 1px dashed #000000;
-
+    text-align: center;
+    padding-top:30px;
   }
   
   .past {
